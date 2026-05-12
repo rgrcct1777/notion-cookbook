@@ -26,6 +26,7 @@ The [workers](workers/) directory includes examples built with the [Notion Worke
 - **[tools/snowflake-query](workers/tools/snowflake-query/)**: Query Snowflake from a Notion agent and return results _(coming soon)_
 - **[tools/spotify-control](workers/tools/spotify-control/)**: Start and control Spotify playback from a Notion agent _(coming soon)_
 
+
 ## Running an example
 
 Each example has its own README with specific instructions. Generally you'll need to:
