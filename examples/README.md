@@ -14,7 +14,8 @@ The [javascript](javascript/) directory includes examples built with Notion's of
 - **[notion-github-sync](javascript/notion-github-sync/)**: Sync GitHub issues to a Notion database
 - **[notion-task-github-pr-sync](javascript/notion-task-github-pr-sync/)**: Connect Notion tasks to GitHub pull requests
 - **[parse-text-from-any-block-type](javascript/parse-text-from-any-block-type/)**: Extract text content from different block types
-- **[web-form-with-express](javascript/web-form-with-express/)**: Build a web form that submits data to Notion
+- **[web-form-with-express](javascript/web-form-with-express/)**: Interactive step-by-step web form that creates databases, pages, blocks, and comments via Notion's API
+- **[web-form-with-cloudflare-workers](javascript/web-form-with-cloudflare-workers/)**: The same interactive demo deployed as a Cloudflare Worker — no servers, runs at the edge with a permanent public URL
 
 ## Running an example
 

@@ -1,0 +1,9 @@
+name = "notion-api-demo"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Set NOTION_KEY and NOTION_PAGE_ID as secrets (not vars):
+#   npx wrangler secret put NOTION_KEY
+#   npx wrangler secret put NOTION_PAGE_ID
