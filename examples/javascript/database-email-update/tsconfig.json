@@ -6,6 +6,7 @@
     "module": "commonjs",
 
     "moduleResolution": "Node",
+    "ignoreDeprecations": "6.0",
 
     "allowSyntheticDefaultImports": true,
 
