@@ -7,6 +7,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   typecheck-javascript-examples:
     runs-on: ubuntu-latest
@@ -23,3 +26,19 @@ jobs:
         run: ./scripts/install-examples.sh
       - name: Typecheck JavaScript examples
         run: ./scripts/typecheck-examples.sh
+
+  format-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      # v4.2.2
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Use Node.js 20.x
+        # v4.1.0
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af
+        with:
+          node-version: 20.x
+      - name: Install root dependencies
+        run: npm ci
+      - name: Check formatting
+        run: npm run format:check

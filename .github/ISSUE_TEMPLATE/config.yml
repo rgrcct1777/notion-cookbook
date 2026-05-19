@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Notion Developers Slack
+    url: https://join.slack.com/t/notiondevs/shared_invite/zt-20b5996xv-DzJdLiympy6jP0GGzu3AMg
+    about: Ask questions and get help from the Notion developer community
+  - name: Notion API documentation
+    url: https://developers.notion.com
+    about: Official API reference and guides
