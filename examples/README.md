@@ -16,6 +16,14 @@ The [javascript](javascript/) directory includes examples built with Notion's of
 - **[parse-text-from-any-block-type](javascript/parse-text-from-any-block-type/)**: Extract text content from different block types
 - **[web-form-with-express](javascript/web-form-with-express/)**: Interactive step-by-step web form that creates databases, pages, blocks, and comments via Notion's API
 - **[web-form-with-cloudflare-workers](javascript/web-form-with-cloudflare-workers/)**: The same interactive demo deployed as a Cloudflare Worker — no servers, runs at the edge with a permanent public URL
+- **[notion-webhook-logger-worker](javascript/notion-webhook-logger-worker/)**: Cloudflare Worker that receives webhooks from any HTTP service and logs each event as a Notion database row
+- **[notion-digest-worker](javascript/notion-digest-worker/)**: Scheduled Cloudflare Worker that automatically creates weekly digest pages from a Notion task database
+
+### Python
+
+The [python](python/) directory includes examples built with the official [`notion-client`](https://github.com/ramnes/notion-sdk-py) Python SDK:
+
+- **[intro-to-notion-api](python/intro-to-notion-api/)**: Four short scripts covering the core operations — adding blocks, creating databases, adding pages, and querying with filters
 
 ## Running an example
 
@@ -24,7 +32,7 @@ Each example has its own README with specific instructions. Generally you'll nee
 1. Create a [Notion integration](https://www.notion.com/my-integrations)
 2. Share your test page or database with the integration
 3. Set up environment variables (usually in a `.env` file)
-4. Install dependencies with `npm install`
+4. Install dependencies (`npm install` for JavaScript, `pip install -r requirements.txt` for Python)
 5. Run the example
 
 ## Contributing examples
@@ -34,10 +42,6 @@ Have an example you'd like to share? See [CONTRIBUTING.md](../CONTRIBUTING.md) f
 When adding an example:
 
 - Include a clear README explaining what it does and how to use it
-- Add any necessary configuration files (package.json, tsconfig.json, etc.)
+- Add any necessary configuration files (package.json, tsconfig.json, requirements.txt, etc.)
 - Make sure it's tested and works as documented
 - Keep it focused on demonstrating a specific technique or integration
-
-## Other languages
-
-Currently we only have JavaScript examples, but we'd love to add examples in other languages. If you've built something in Python, Ruby, Go, or another language, please contribute!
