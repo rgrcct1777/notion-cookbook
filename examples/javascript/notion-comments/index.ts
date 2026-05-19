@@ -8,16 +8,26 @@ const pageId = process.env.NOTION_PAGE_ID ?? ""
 const command = process.argv[2] ?? "list"
 
 async function listComments() {
-  const response = await notion.comments.list({ block_id: pageId })
+  const allComments = []
+  let cursor: string | undefined
 
-  if (response.results.length === 0) {
+  do {
+    const response = await notion.comments.list({
+      block_id: pageId,
+      ...(cursor ? { start_cursor: cursor } : {}),
+    })
+    allComments.push(...response.results)
+    cursor = response.has_more ? (response.next_cursor ?? undefined) : undefined
+  } while (cursor)
+
+  if (allComments.length === 0) {
     console.log("No comments found on this page.")
     return
   }
 
-  console.log(`Found ${response.results.length} comment(s):\n`)
+  console.log(`Found ${allComments.length} comment(s):\n`)
 
-  for (const comment of response.results) {
+  for (const comment of allComments) {
     const text = comment.rich_text.map((t) => t.plain_text).join("")
     const created = new Date(comment.created_time).toLocaleString()
     console.log(`[${created}] ${text}`)
