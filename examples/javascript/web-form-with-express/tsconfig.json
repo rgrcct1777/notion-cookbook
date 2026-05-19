@@ -3,6 +3,7 @@
     "target": "ES2019",
     "module": "commonjs",
     "moduleResolution": "Node",
+    "ignoreDeprecations": "6.0",
     "allowSyntheticDefaultImports": true,
     "strict": false,
     "esModuleInterop": true,
