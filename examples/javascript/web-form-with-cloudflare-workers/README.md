@@ -50,7 +50,7 @@ That's it — your demo is live at a permanent public URL.
 The worker uses [Hono](https://hono.dev/) for routing and calls the Notion REST API directly using the Worker's native `fetch`. No Node.js runtime is required; the entire app — HTML, CSS, JS, and API logic — ships as a single Worker script.
 
 | Route | Method | Description |
-|---|---|---|
+| --- | --- | --- |
 | `/` | GET | Serves the interactive HTML UI |
 | `/databases` | POST | Creates a new Notion database |
 | `/pages` | POST | Adds a page to a database |
@@ -62,6 +62,6 @@ The worker uses [Hono](https://hono.dev/) for routing and calls the Notion REST 
 Set these as [Worker secrets](https://developers.cloudflare.com/workers/configuration/secrets/), not plaintext vars:
 
 | Name | Description |
-|---|---|
+| --- | --- |
 | `NOTION_KEY` | Notion integration secret (`secret_…`) |
 | `NOTION_PAGE_ID` | ID of the Notion page to create databases in |

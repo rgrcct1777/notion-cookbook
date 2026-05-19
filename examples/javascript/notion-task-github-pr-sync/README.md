@@ -23,11 +23,11 @@ npm install
 
 ### 2. Create Github Personal Access Token
 
-In order for this Integration to work with Github, you'll need a Github Personal Access Token. You can create your GitHub Personal Access token by following the guide [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token). Make a note of the Personal Access token, we'll need it later.
+In order for this Integration to work with Github, you'll need a Github Personal Access Token. You can create your GitHub Personal Access token by following the [GitHub guide to creating a personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token). Make a note of the Personal Access token, we'll need it later.
 
 ### 3. Setup Github Repository
 
-If you don't have a Github Repository you may [click here](https://github.com/new) to set one up.
+If you don't have a Github Repository you may [create a new repository](https://github.com/new).
 
 Once you've created a repository or if you already have one, make a note of the repository owner and repository name, we'll need it later.
 
@@ -51,7 +51,7 @@ in your .env file to true or false. More on this later.
 
 ### 5. Create Notion Integration
 
-In order to leverage the Notion API, we must first create an integration. To do that, [click here](https://www.notion.com/my-integrations), and click Create new integration.
+In order to leverage the Notion API, we must first create an integration. To do that, visit the [Notion integrations page](https://www.notion.com/my-integrations) and click Create new integration.
 
 As you progress through the fields, pay close attention to enabling the following permissions:
 
