@@ -7,7 +7,7 @@ A Cloudflare Worker that receives webhooks from any HTTP service (GitHub, Stripe
 Each webhook creates a Notion database row with:
 
 | Property | Value |
-|---|---|
+| --- | --- |
 | **Name** | Auto-derived title (e.g. `github/push: opened on org/repo`) |
 | **Source** | Service name inferred from request headers |
 | **Received** | Timestamp of the incoming request |
@@ -25,7 +25,7 @@ Each webhook creates a Notion database row with:
 Create a database with these properties (names must match exactly):
 
 | Property name | Type |
-|---|---|
+| --- | --- |
 | Name | Title |
 | Source | Text |
 | Received | Date |
@@ -71,7 +71,7 @@ https://notion-webhook-logger.<your-subdomain>.workers.dev/webhook
 The Worker inspects incoming headers to label the source:
 
 | Header | Source label |
-|---|---|
+| --- | --- |
 | `X-GitHub-Event: push` | `github/push` |
 | `Stripe-Signature` | `stripe` |
 | `X-Webhook-Source: linear` | `linear` |
