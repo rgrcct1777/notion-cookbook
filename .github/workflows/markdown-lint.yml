@@ -14,9 +14,12 @@ jobs:
     steps:
       # v4.2.2
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-      - name: Lint markdown files
-        # v3.5.0
-        uses: nosborn/github-action-markdown-cli@508d6cefd8f0cc99eab5d2d4685b1d5f470042c1
+      - name: Use Node.js 20.x
+        # v4.1.0
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af
         with:
-          files: .
-          config_file: .markdownlint.jsonc
+          node-version: 20.x
+      - name: Install root dependencies
+        run: npm ci
+      - name: Lint markdown files
+        run: npm run lint:markdown
