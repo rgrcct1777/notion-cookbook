@@ -32,7 +32,7 @@ get your API token.
 
 ### 3. Setup your Notion workspace
 
-You can create your Notion API key [here](https://www.notion.com/my-integrations).
+You can create your Notion API key [Notion My Integrations](https://www.notion.com/my-integrations).
 
 To create a Notion database that will work with this example, duplicate [this database template](https://public-api-examples.notion.site/0def5dfb6d9b4cdaa907a0466834b9f4?v=aea75fc133e54b3382d12292291d9248).
 
