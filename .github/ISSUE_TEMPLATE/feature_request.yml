@@ -1,0 +1,36 @@
+name: Feature request
+description: Suggest a new example, skill, or improvement
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea for a new example, skill, or improvement? Tell us about it.
+  - type: textarea
+    id: description
+    attributes:
+      label: What are you proposing?
+      description: A clear description of the feature or addition.
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Use case / motivation
+      description: Why would this be useful? What problem does it solve?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any other approaches you thought about?
+    validations:
+      required: false
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context
+      description: Links, references, or anything else relevant.
+    validations:
+      required: false
