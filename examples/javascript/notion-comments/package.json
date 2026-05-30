@@ -1,0 +1,19 @@
+{
+  "name": "notion-comments",
+  "version": "1.0.0",
+  "description": "List and add comments on Notion pages using the Notion API.",
+  "scripts": {
+    "list": "node --loader ts-node/esm index.ts list",
+    "add": "node --loader ts-node/esm index.ts add"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@notionhq/client": "^5.4.0",
+    "dotenv": "^16.3.1",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
