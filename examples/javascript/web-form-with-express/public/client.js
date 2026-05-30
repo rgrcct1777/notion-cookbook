@@ -84,14 +84,20 @@ document.querySelectorAll(".copy-btn").forEach((btn) => {
   btn.addEventListener("click", () => {
     const input = document.getElementById(btn.dataset.target)
     if (!input?.value) return
-    navigator.clipboard.writeText(input.value).then(() => {
-      btn.textContent = "Copied!"
-      btn.classList.add("copied")
-      setTimeout(() => {
-        btn.textContent = "Copy"
-        btn.classList.remove("copied")
-      }, 2000)
-    })
+    navigator.clipboard
+      .writeText(input.value)
+      .then(() => {
+        btn.textContent = "Copied!"
+        btn.classList.add("copied")
+        setTimeout(() => {
+          btn.textContent = "Copy"
+          btn.classList.remove("copied")
+        }, 2000)
+      })
+      .catch(() => {
+        btn.textContent = "Copy failed"
+        setTimeout(() => (btn.textContent = "Copy"), 2000)
+      })
   })
 })
 

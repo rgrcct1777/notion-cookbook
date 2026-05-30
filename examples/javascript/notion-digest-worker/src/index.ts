@@ -30,15 +30,15 @@ async function notionFetch(
   return data as Record<string, unknown>
 }
 
-// ISO date string for N days ago
-function daysAgo(n: number): string {
-  const d = new Date()
+// ISO date string for N days ago relative to a fixed reference point
+function daysAgo(now: Date, n: number): string {
+  const d = new Date(now)
   d.setUTCDate(d.getUTCDate() - n)
   return d.toISOString().slice(0, 10)
 }
 
-function todayISO(): string {
-  return new Date().toISOString().slice(0, 10)
+function todayISO(now: Date): string {
+  return now.toISOString().slice(0, 10)
 }
 
 // Extract the plain-text title from a Notion page's properties
@@ -58,18 +58,21 @@ function pageTitle(page: Record<string, unknown>): string {
 async function buildDigest(env: Env): Promise<string> {
   const statusProp = env.STATUS_PROPERTY ?? "Status"
   const doneValue = env.DONE_VALUE ?? "Done"
-  const since = daysAgo(7)
-  const today = todayISO()
+  const now = new Date()
+  const since = daysAgo(now, 7)
+  const today = todayISO(now)
   const weekLabel = `${since} → ${today}`
 
-  // Query for items completed in the last 7 days
+  // Query for items completed in the last 7 days.
+  // Uses the native Status filter type — if your property is a legacy Select type,
+  // change `status: { equals: doneValue }` to `select: { equals: doneValue }`.
   const result = await notionFetch(env, `/databases/${env.SOURCE_DATABASE_ID}/query`, {
     method: "POST",
     body: {
       filter: {
-        or: [
+        and: [
+          { timestamp: "last_edited_time", last_edited_time: { on_or_after: since } },
           { property: statusProp, status: { equals: doneValue } },
-          { property: statusProp, select: { equals: doneValue } },
         ],
       },
       sorts: [{ timestamp: "last_edited_time", direction: "descending" }],
@@ -79,7 +82,10 @@ async function buildDigest(env: Env): Promise<string> {
 
   const pages = (result.results as Array<Record<string, unknown>>) ?? []
 
-  const bulletItems = pages.map((page) => ({
+  // Cap at 97 to stay within Notion's 100-child-block limit (heading + divider + footer = 3).
+  const displayPages = pages.slice(0, 97)
+
+  const bulletItems = displayPages.map((page) => ({
     bulleted_list_item: {
       rich_text: [{ text: { content: pageTitle(page) } }],
     },
@@ -88,7 +94,7 @@ async function buildDigest(env: Env): Promise<string> {
   const children = [
     {
       heading_2: {
-        rich_text: [{ text: { content: `✅  Completed this week (${pages.length})` } }],
+        rich_text: [{ text: { content: `✅  Completed this week (${displayPages.length}${pages.length > 97 ? "+" : ""})` } }],
       },
     },
     ...(bulletItems.length > 0
@@ -104,7 +110,7 @@ async function buildDigest(env: Env): Promise<string> {
     {
       paragraph: {
         rich_text: [
-          { text: { content: "Generated automatically by ", annotations: { color: "gray" } } },
+          { text: { content: "Generated automatically by " }, annotations: { color: "gray" } },
           {
             text: { content: "notion-digest-worker", link: { url: "https://github.com/makenotion/notion-cookbook" } },
             annotations: { color: "gray" },
@@ -134,7 +140,9 @@ export default {
   // Scheduled trigger — runs on the cron defined in wrangler.toml
   async scheduled(_event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
     ctx.waitUntil(
-      buildDigest(env).then((url) => console.log("Digest created:", url))
+      buildDigest(env)
+        .then((url) => console.log("Digest created:", url))
+        .catch((err) => console.error("Digest failed:", err))
     )
   },
 

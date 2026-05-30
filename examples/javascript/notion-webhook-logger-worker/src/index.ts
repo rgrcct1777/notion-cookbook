@@ -56,6 +56,14 @@ app.get("/", (c) => c.text("Notion Webhook Logger is running. POST to /webhook t
 
 // POST /webhook — log the incoming payload as a Notion database row
 app.post("/webhook", async (c) => {
+  // If WEBHOOK_SECRET is configured, require it in the X-Webhook-Secret header.
+  if (c.env.WEBHOOK_SECRET) {
+    const provided = c.req.header("X-Webhook-Secret")
+    if (!provided || provided !== c.env.WEBHOOK_SECRET) {
+      return c.json({ error: "Unauthorized" }, 401)
+    }
+  }
+
   // Infer the source from a common header pattern
   const source =
     c.req.header("X-GitHub-Event")
@@ -76,8 +84,11 @@ app.post("/webhook", async (c) => {
 
   const title = deriveTitle(source, payload)
 
-  // Truncate to Notion's 2000-char limit for rich text blocks
-  const preview = rawBody.length > 1990 ? rawBody.slice(0, 1990) + "…" : rawBody
+  // Truncate to Notion's 2000-char limit. Use Array.from so the slice respects
+  // Unicode code points (avoids splitting surrogate pairs for emoji, etc.).
+  const codePoints = Array.from(rawBody)
+  const preview =
+    codePoints.length > 1990 ? codePoints.slice(0, 1990).join("") + "…" : rawBody
 
   try {
     await notionFetch(c.env, "/pages", {

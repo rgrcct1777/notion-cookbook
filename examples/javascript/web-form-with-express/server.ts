@@ -49,7 +49,14 @@ app.post("/databases", async (req: Request, res: Response) => {
       return
     }
 
-    const dataSourceId = newDb.data_sources[0].id
+    const dataSourceId = newDb.data_sources[0]?.id
+    if (!dataSourceId) {
+      res.status(403).json({
+        message: "error",
+        error: { message: "Database has no data sources — check integration permissions" },
+      })
+      return
+    }
     res.json({ message: "success!", data: { ...newDb, dataSourceId } })
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error"
