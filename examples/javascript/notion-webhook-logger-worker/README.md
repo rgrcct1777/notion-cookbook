@@ -67,6 +67,25 @@ Point your webhook source (GitHub, Stripe, etc.) at:
 https://notion-webhook-logger.<your-subdomain>.workers.dev/webhook
 ```
 
+## Securing the endpoint
+
+A deployed Worker has a public URL, so anyone who discovers it could POST rows into your database. To lock it down, set an optional shared secret:
+
+```bash
+npx wrangler secret put WEBHOOK_SECRET   # any random string
+```
+
+When `WEBHOOK_SECRET` is set, every request to `/webhook` must include a matching `X-Webhook-Secret` header or it is rejected with `401 Unauthorized`:
+
+```bash
+curl -X POST https://notion-webhook-logger.<your-subdomain>.workers.dev/webhook \
+  -H "Content-Type: application/json" \
+  -H "X-Webhook-Secret: <your-secret>" \
+  -d '{"hello":"world"}'
+```
+
+If `WEBHOOK_SECRET` is left unset, the endpoint stays open — convenient for local testing, but not recommended for production.
+
 ## How source detection works
 
 The Worker inspects incoming headers to label the source:

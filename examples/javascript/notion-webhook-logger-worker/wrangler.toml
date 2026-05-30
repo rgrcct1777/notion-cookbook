@@ -6,4 +6,4 @@ compatibility_flags = ["nodejs_compat"]
 # Set secrets (never commit real values):
 #   npx wrangler secret put NOTION_KEY
 #   npx wrangler secret put NOTION_DATABASE_ID
-#   npx wrangler secret put WEBHOOK_SECRET  (optional — for signature verification)
+#   npx wrangler secret put WEBHOOK_SECRET  (optional — callers must send a matching X-Webhook-Secret header)
