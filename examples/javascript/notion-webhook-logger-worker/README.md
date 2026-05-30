@@ -6,13 +6,13 @@ A Cloudflare Worker that receives webhooks from any HTTP service (GitHub, Stripe
 
 Each webhook creates a Notion database row with:
 
-| Property | Value |
-| --- | --- |
-| **Name** | Auto-derived title (e.g. `github/push: opened on org/repo`) |
-| **Source** | Service name inferred from request headers |
-| **Received** | Timestamp of the incoming request |
-| **Status** | `New` (update to `Reviewed` once actioned) |
-| **Body** | Full JSON payload as a code block |
+| Property     | Value                                                       |
+| ------------ | ----------------------------------------------------------- |
+| **Name**     | Auto-derived title (e.g. `github/push: opened on org/repo`) |
+| **Source**   | Service name inferred from request headers                  |
+| **Received** | Timestamp of the incoming request                           |
+| **Status**   | `New` (update to `Reviewed` once actioned)                  |
+| **Body**     | Full JSON payload as a code block                           |
 
 ## Prerequisites
 
@@ -24,12 +24,12 @@ Each webhook creates a Notion database row with:
 
 Create a database with these properties (names must match exactly):
 
-| Property name | Type |
-| --- | --- |
-| Name | Title |
-| Source | Text |
-| Received | Date |
-| Status | Select (options: `New`, `Reviewed`) |
+| Property name | Type                                |
+| ------------- | ----------------------------------- |
+| Name          | Title                               |
+| Source        | Text                                |
+| Received      | Date                                |
+| Status        | Select (options: `New`, `Reviewed`) |
 
 ## Setup
 
@@ -62,6 +62,7 @@ npm run deploy
 ```
 
 Point your webhook source (GitHub, Stripe, etc.) at:
+
 ```
 https://notion-webhook-logger.<your-subdomain>.workers.dev/webhook
 ```
@@ -70,9 +71,9 @@ https://notion-webhook-logger.<your-subdomain>.workers.dev/webhook
 
 The Worker inspects incoming headers to label the source:
 
-| Header | Source label |
-| --- | --- |
-| `X-GitHub-Event: push` | `github/push` |
-| `Stripe-Signature` | `stripe` |
-| `X-Webhook-Source: linear` | `linear` |
-| (none) | `unknown` |
+| Header                     | Source label  |
+| -------------------------- | ------------- |
+| `X-GitHub-Event: push`     | `github/push` |
+| `Stripe-Signature`         | `stripe`      |
+| `X-Webhook-Source: linear` | `linear`      |
+| (none)                     | `unknown`     |

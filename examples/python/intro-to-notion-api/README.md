@@ -2,12 +2,12 @@
 
 Four short scripts that walk through the most common Notion API operations using the official [`notion-client`](https://github.com/ramnes/notion-sdk-py) Python SDK.
 
-| Script | What it does |
-| --- | --- |
-| `1_add_block.py` | Append a heading and paragraph block to a page |
-| `2_create_database.py` | Create a database with typed properties |
-| `3_add_page_to_database.py` | Add a row to the database |
-| `4_query_database.py` | Filter and sort database rows |
+| Script                      | What it does                                   |
+| --------------------------- | ---------------------------------------------- |
+| `1_add_block.py`            | Append a heading and paragraph block to a page |
+| `2_create_database.py`      | Create a database with typed properties        |
+| `3_add_page_to_database.py` | Add a row to the database                      |
+| `4_query_database.py`       | Filter and sort database rows                  |
 
 ## Prerequisites
 
