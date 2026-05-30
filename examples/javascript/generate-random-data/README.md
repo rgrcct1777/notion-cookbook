@@ -21,7 +21,7 @@ npm install
 
 ### 2. Setup your Notion workspace
 
-You can create your Notion API key [Notion My Integrations](https://www.notion.com/my-integrations).
+You can create your Notion API key on the [Notion integrations page](https://www.notion.com/my-integrations).
 
 To create a Notion database that will work with this example, duplicate [this database template](https://public-api-examples.notion.site/f3e098475baa45878759ed8d04ea79af).
 

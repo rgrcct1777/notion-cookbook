@@ -1,0 +1,20 @@
+name = "notion-digest-worker"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[triggers]
+# Run every Friday at 5 pm UTC. Edit to match your team's timezone.
+# Cron syntax: minute hour day-of-month month day-of-week
+crons = ["0 17 * * 5"]
+
+[vars]
+# Optional — override the status property name and "done" value if your database uses
+# different labels. Defaults: STATUS_PROPERTY="Status", DONE_VALUE="Done"
+# STATUS_PROPERTY = "Status"
+# DONE_VALUE = "Done"
+
+# Set as secrets (never commit real values):
+#   npx wrangler secret put NOTION_KEY
+#   npx wrangler secret put SOURCE_DATABASE_ID
+#   npx wrangler secret put DIGEST_PAGE_ID
