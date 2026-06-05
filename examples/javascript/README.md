@@ -41,10 +41,12 @@ Most examples follow this pattern:
    ```
 
 2. **Configure environment**:
-   Copy the example environment file and add your API key:
+   Each example ships a template env file — copy it to `.env` and fill in your values.
+   The exact filename varies by example (check the example's own README):
 
    ```bash
-   cp example.env .env
+   cp example.env .env       # examples that use example.env
+   cp .env.example .env      # examples that use .env.example
    ```
 
    Then edit `.env` to add your `NOTION_API_KEY` and any other required variables.
