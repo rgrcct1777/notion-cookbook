@@ -15,6 +15,7 @@ The [javascript](javascript/) directory includes examples built with Notion's of
 - **[notion-task-github-pr-sync](javascript/notion-task-github-pr-sync/)**: Connect Notion tasks to GitHub pull requests
 - **[parse-text-from-any-block-type](javascript/parse-text-from-any-block-type/)**: Extract text content from different block types
 - **[web-form-with-express](javascript/web-form-with-express/)**: Interactive step-by-step web form that creates databases, pages, blocks, and comments via Notion's API
+- **[notion-comments](javascript/notion-comments/)**: List and add comments on Notion pages using the Comments API
 - **[web-form-with-cloudflare-workers](javascript/web-form-with-cloudflare-workers/)**: The same interactive demo deployed as a Cloudflare Worker — no servers, runs at the edge with a permanent public URL
 - **[notion-webhook-logger-worker](javascript/notion-webhook-logger-worker/)**: Cloudflare Worker that receives webhooks from any HTTP service and logs each event as a Notion database row
 - **[notion-digest-worker](javascript/notion-digest-worker/)**: Scheduled Cloudflare Worker that automatically creates weekly digest pages from a Notion task database

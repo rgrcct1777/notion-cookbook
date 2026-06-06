@@ -21,10 +21,14 @@ Examples demonstrating how to use Notion's JavaScript SDK to build integrations.
 - **[notion-github-sync](notion-github-sync/)**: Sync GitHub issues to Notion
 - **[notion-task-github-pr-sync](notion-task-github-pr-sync/)**: Link Notion tasks with GitHub pull requests
 - **[web-form-with-express](web-form-with-express/)**: Create a web form that writes to Notion
+- **[web-form-with-cloudflare-workers](web-form-with-cloudflare-workers/)**: The same interactive demo deployed as a Cloudflare Worker — no servers, runs at the edge with a permanent public URL
+- **[notion-webhook-logger-worker](notion-webhook-logger-worker/)**: Cloudflare Worker that receives webhooks from any HTTP service and logs each event as a Notion database row
+- **[notion-digest-worker](notion-digest-worker/)**: Scheduled Cloudflare Worker that automatically creates weekly digest pages from a Notion task database
 
 ### Utilities
 
-**[parse-text-from-any-block-type](parse-text-from-any-block-type/)**: Extract text from various block types
+- **[parse-text-from-any-block-type](parse-text-from-any-block-type/)**: Extract text from various block types
+- **[notion-comments](notion-comments/)**: List all comments on a page and add new ones using the Notion Comments API
 
 ## General setup
 
@@ -37,10 +41,12 @@ Most examples follow this pattern:
    ```
 
 2. **Configure environment**:
-   Copy the example environment file and add your API key:
+   Each example ships a template env file — copy it to `.env` and fill in your values.
+   The exact filename varies by example (check the example's own README):
 
    ```bash
-   cp .env.example .env
+   cp example.env .env       # examples that use example.env
+   cp .env.example .env      # examples that use .env.example
    ```
 
    Then edit `.env` to add your `NOTION_API_KEY` and any other required variables.
