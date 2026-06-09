@@ -112,3 +112,30 @@ If you have the IDs for other databases/pages, you can use them as long as you h
 To learn more about this demo, read the [Create an integration guide](https://developers.notion.com/docs/create-a-notion-integration), which steps through how this code works.
 
 (Thanks to [Glitch](https://glitch.com/) for the starter app used while creating this demo!)
+
+---
+
+### Deploying live
+
+#### Docker (any cloud platform)
+
+```bash
+docker build -t notion-api-demo .
+docker run -p 3000:3000 \
+  -e NOTION_KEY=your_secret \
+  -e NOTION_PAGE_ID=your_page_id \
+  notion-api-demo
+```
+
+#### Render.com (free tier)
+
+1. Fork or clone this repo to your GitHub account
+2. Go to [render.com](https://render.com) → **New → Web Service**
+3. Connect your repo and set the root directory to `examples/javascript/web-form-with-express`
+4. Render auto-detects `render.yaml` and configures the service
+5. Add `NOTION_KEY` and `NOTION_PAGE_ID` as environment variables in the Render dashboard
+6. Click **Deploy** — your app gets a permanent public URL
+
+#### Cloudflare Workers (edge deployment)
+
+Prefer zero-latency edge hosting? See the [`web-form-with-cloudflare-workers`](../web-form-with-cloudflare-workers) example — same UI, deployed globally in under a minute.

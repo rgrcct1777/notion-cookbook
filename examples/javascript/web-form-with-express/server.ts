@@ -10,6 +10,17 @@ const notion = new Client({ auth: process.env.NOTION_KEY })
 app.use(express.static("public"))
 app.use(express.json())
 
+app.use((_req: Request, res: Response, next) => {
+  res.setHeader("X-Content-Type-Options", "nosniff")
+  res.setHeader("X-Frame-Options", "DENY")
+  res.setHeader("Referrer-Policy", "same-origin")
+  next()
+})
+
+app.get("/health", (_req: Request, res: Response) => {
+  res.json({ status: "ok" })
+})
+
 app.get("/", (_req: Request, res: Response) => {
   res.sendFile(__dirname + "/views/index.html")
 })

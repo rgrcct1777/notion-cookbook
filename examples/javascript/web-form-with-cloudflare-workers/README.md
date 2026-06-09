@@ -52,6 +52,7 @@ The worker uses [Hono](https://hono.dev/) for routing and calls the Notion REST 
 | Route        | Method | Description                         |
 | ------------ | ------ | ----------------------------------- |
 | `/`          | GET    | Serves the interactive HTML UI      |
+| `/health`    | GET    | Health check — returns `{"status":"ok"}` |
 | `/databases` | POST   | Creates a new Notion database       |
 | `/pages`     | POST   | Adds a page to a database           |
 | `/blocks`    | POST   | Appends a paragraph block to a page |

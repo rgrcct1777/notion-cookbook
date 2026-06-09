@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: notion-api-demo
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NOTION_KEY
+        sync: false
+      - key: NOTION_PAGE_ID
+        sync: false
